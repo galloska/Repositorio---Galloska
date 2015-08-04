@@ -11,8 +11,8 @@ queue<pii> q;
 char mat[MAXN][MAXN];
 int dist[MAXN][MAXN];
 int dist2[MAXN][MAXN];
-int mov[4] = {1,-1,0,0};
-int mov2[4] = {0,0,1,-1};
+int mov[5] = {1,-1,0,0};
+int mov2[5] = {0,0,1,-1};
 
 bool valid(int i,int j){
 	if(i==n || j==n || i<0 || j<0) return false;
@@ -28,12 +28,11 @@ void bfs(){
 		i = nodo.first , j = nodo.second;
 		q.pop();
 		for(int h=0;h<4;h++)
-			for(int k=0;k<4;k++)
-				if( valid( i + mov[h] , j + mov2[k] ) &&
-				dist[i][j]+1 < dist[ i + mov[h] ][ j + mov2[k] ]){
-					dist[ i + mov[h] ][ j + mov2[k] ] = dist[i][j]+1;
-					q.push( pii(i + mov[h] , j + mov2[k]) );
-				}
+			if( valid( i + mov[h] , j + mov2[h] ) &&
+			dist[i][j] + 1 < dist[ i + mov[h] ][ j + mov2[h] ]){
+				dist[ i + mov[h] ][ j + mov2[h] ] = dist[i][j] + 1;
+				q.push( pii(i + mov[h] , j + mov2[h]) );
+			}
 	}
 }
 
@@ -46,13 +45,11 @@ void bfs2(pii nodo){
 		i = nodo.first , j = nodo.second;
 		q.pop();
 		for(int h=0;h<4;h++)
-			for(int k=0;k<4;k++)
-				if( valid( i + mov[h] , j + mov2[k] ) &&
-				dist2[i][j]+1 < dist2[ i + mov[h] ][ j + mov2[k] ])
-				{
-					dist2[ i + mov[h] ][ j + mov2[k] ] = dist2[i][j]+1;
-					q.push( pii(i + mov[h] , j + mov2[k]) );
-				}
+			if( valid( i + mov[h] , j + mov2[h] ) &&
+			dist2[i][j] + 1 < dist2[ i + mov[h] ][ j + mov2[h] ]){
+				dist2[ i + mov[h] ][ j + mov2[h] ] = dist2[i][j]+1;
+				q.push( pii(i + mov[h] , j + mov2[h]) );
+			}
 	}
 }
 
@@ -82,6 +79,6 @@ int main(){
 
 	bfs2(pii(a,b));
 
-	printf("%d\n",(dist2[c][d] - dist[a][b] ) / d);
+	printf("%d %d\n",( dist2[c][d] , dist[a][b] );
 	return 0;
 }
