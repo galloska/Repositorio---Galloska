@@ -1,3 +1,5 @@
+//AC : Primer intento
+//Plataforma : Live Archive 4473
 #include <stdio.h>
 #include <algorithm>
 
