@@ -14,7 +14,6 @@ int mov2[5] = {0,0,1,-1};
 bool valid(int i,int j,int num){
     if(i<0 || j<0 || i>=r || j>=c) return false;
     if( num != mat[i][j] ) return false;
-
     return true;
 }
 
