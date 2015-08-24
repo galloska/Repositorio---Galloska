@@ -1,6 +1,5 @@
 //AC : 
 //Plataforma: Uva Online Judge
-
 #include <algorithm>
 #include <iostream>
 #include <cstdio>
@@ -83,36 +82,7 @@ void Init(int t_){
     fill( matcheo , matcheo + MAXN , '_' - 'A' + 11 );
 }
 
-int main(){
-    int n = 38;
-    int s_ = 0,t_ = 37,aux = 0;
-    char letra;
-    Init(t_);
-    while(getline(cin,cad)){
-        if(cad==""){
-            int w = FlujoMaximo(s_ , t_ , n);
-            for(int i=1;i<=10;i++){
-                for(int j=11;j<37;j++)
-                    if(res[i][j])
-                        matcheo[i-1] = j;
-            }
-            if(w!=aux) printf("!\n");
-            else{
-                for(int i=0;i<=9;i++)
-                    printf("%c",matcheo[i]+'A'-11);
-                printf("\n");
-            }
-            Init(t_);
-            aux = 0;
-        }
-        else{
-            letra = cad[0];
-            aux += cad[1] - 48;
-            AgregarArista( s_ , letra - 'A' + 11, cad[1] - 48 );
-            for(int i=3;i<cad.size() && cad[i]!=';';i++)
-                AgregarArista( letra - 'A' + 11 , cad[i] - 48 + 1 , 1 );
-        }
-    }
+void Solve(int s_,int t_,int n,int &aux){
     int w = FlujoMaximo(s_ , t_ , n);
     for(int i=1;i<=10;i++){
         for(int j=11;j<37;j++)
@@ -125,5 +95,25 @@ int main(){
             printf("%c",matcheo[i]+'A'-11);
         printf("\n");
     }
+    Init(t_);
+    aux = 0;
+}
+
+int main(){
+    int n = 38;
+    int s_ = 0,t_ = 37,aux = 0;
+    char letra;
+    Init(t_);
+    while(getline(cin,cad)){
+        if(cad=="") Solve(s_,t_,n,aux);
+        else{
+            letra = cad[0];
+            aux += cad[1] - 48;
+            AgregarArista( s_ , letra - 'A' + 11, cad[1] - 48 );
+            for(int i=3;i<cad.size() && cad[i]!=';';i++)
+                AgregarArista( letra - 'A' + 11 , cad[i] - 48 + 1 , 1 );
+        }
+    }
+    Solve(s_,t_,n,aux);
     return 0;
 }
