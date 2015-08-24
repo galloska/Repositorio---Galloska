@@ -1,5 +1,3 @@
-//AC : 14vo intento
-//Plataforma : Uva online Judge
 #include <algorithm>
 #include <iostream>
 #include <cstdio>
@@ -44,9 +42,9 @@ int FlujoMaximo_(int n){
             int u = q.front();
             q.pop();
             if (u == t) break;
-            for (int j = 0; j < 38; j++){
-                int v = j;
-                if(res[u][v] > 0 && !vis[v] && v!=38)
+            for (int j = 0; j < lista[u].size(); j++){
+                int v = lista[u][j];
+                if(res[u][v] > 0 && !vis[v])
                     vis[v] = true, q.push(v), camino[v] = u;
             }
         }
@@ -66,6 +64,7 @@ int FlujoMaximo(int s_,int t_,int n){
 
 void AgregarArista(int u,int v,int p){
     lista[u].push_back(v);
+    lista[v].push_back(u);
     res[u][v] = p;
 }
 
