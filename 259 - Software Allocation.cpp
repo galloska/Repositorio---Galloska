@@ -1,5 +1,5 @@
-//AC : 
-//Plataforma: Uva Online Judge
+//AC : 14vo intento
+//Plataforma : Uva online Judge
 #include <algorithm>
 #include <iostream>
 #include <cstdio>
@@ -9,7 +9,7 @@
 using namespace std;
 
 const int MAXN = 40;
-const int INF = 1e8;
+const int INF = 1000000000;
 
 bool vis[MAXN];
 int camino[MAXN];
@@ -44,9 +44,9 @@ int FlujoMaximo_(int n){
             int u = q.front();
             q.pop();
             if (u == t) break;
-            for (int j = 0; j < lista[u].size(); j++){
-                int v = lista[u][j];
-                if(res[u][v] > 0 && !vis[v])
+            for (int j = 0; j < 38; j++){
+                int v = j;
+                if(res[u][v] > 0 && !vis[v] && v!=38)
                     vis[v] = true, q.push(v), camino[v] = u;
             }
         }
@@ -111,7 +111,7 @@ int main(){
             aux += cad[1] - 48;
             AgregarArista( s_ , letra - 'A' + 11, cad[1] - 48 );
             for(int i=3;i<cad.size() && cad[i]!=';';i++)
-                AgregarArista( letra - 'A' + 11 , cad[i] - 48 + 1 , 1 );
+                AgregarArista( letra - 'A' + 11 , cad[i] - 48 + 1 , INF );
         }
     }
     Solve(s_,t_,n,aux);
