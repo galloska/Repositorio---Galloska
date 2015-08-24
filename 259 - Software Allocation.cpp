@@ -1,3 +1,5 @@
+//AC : 14vo intento
+//Plataforma : Uva Online Judge
 #include <algorithm>
 #include <iostream>
 #include <cstdio>
