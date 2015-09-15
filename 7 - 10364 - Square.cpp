@@ -1,3 +1,5 @@
+//AC : Segundo intento
+//Plataforma: Uva Online Judge 10364
 #include<bits/stdc++.h>
 
 using namespace std;
