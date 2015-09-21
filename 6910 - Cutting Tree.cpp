@@ -1,4 +1,4 @@
-//AC: Primer intento
+//AC: Segundo intento
 //Plataforma: Live Archive
 #include <bits/stdc++.h>
 #define pii pair<int,int>
